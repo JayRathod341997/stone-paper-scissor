@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import classes from "./Main.module.css";
+import Button from "./Button";
 const Main = () => {
   const images = ["paper", "scissor", "stone"];
   const [players, setPlayers] = useState({
@@ -11,7 +12,7 @@ const Main = () => {
   const startBtnHandler = () => {
     const p1 = images[Math.floor(Math.random() * 3)];
     const p2 = images[Math.floor(Math.random() * 3)];
-    // console.log(p1, p2);
+    console.log(p1, p2);
 
     if (p1 === "paper") {
       if (p2 === "scissor") {
@@ -63,14 +64,7 @@ const Main = () => {
           <p>Player 2 selected </p>
         </div>
       </div>
-      <div className={classes.footer}>
-        <button className={classes.button} onClick={() => {}}>
-          Reset
-        </button>
-        <button className={classes.button} onClick={startBtnHandler}>
-          Start
-        </button>
-      </div>
+      <Button onClick={startBtnHandler}></Button>
     </Fragment>
   );
 };
