@@ -7,42 +7,43 @@ const Main = () => {
     player1: "paper",
     player2: "scissor",
   });
+
+  const [isFirstPlayerWin, setIsFirstPlayerWin] = useState(true);
+  const [draw, setDraw] = useState(false);
   //   console.log(players);
-  let winner = "p1";
+
   const startBtnHandler = () => {
     const p1 = images[Math.floor(Math.random() * 3)];
     const p2 = images[Math.floor(Math.random() * 3)];
     console.log(p1, p2);
 
+    setPlayers((prev) => ({ ...prev, player1: p1, player2: p2 }));
+
+    if (p1 === p2) {
+      setDraw(true);
+      return;
+    }
+    setDraw(false);
     if (p1 === "paper") {
       if (p2 === "scissor") {
-        winner = "p2";
-      } else if (p2 === "stone") {
-        winner = "p1";
+        setIsFirstPlayerWin(false);
       } else {
-        winner = "draw";
+        setIsFirstPlayerWin(true);
       }
     } else if (p1 === "stone") {
       if (p2 === "paper") {
-        winner = "p2";
-      } else if (p2 === "paper") {
-        winner = "p1";
+        setIsFirstPlayerWin(false);
       } else {
-        winner = "draw";
+        setIsFirstPlayerWin(true);
       }
     } else {
       //scissor
       if (p2 === "stone") {
-        winner = "p2";
-      } else if (p2 === "paper") {
-        winner = "p1";
+        setIsFirstPlayerWin(false);
       } else {
-        winner = "draw";
+        setIsFirstPlayerWin(true);
       }
     }
-
-    console.log(winner);
-    setPlayers((prev) => ({ ...prev, player1: p1, player2: p2 }));
   };
 
   return (
@@ -50,20 +51,29 @@ const Main = () => {
       <div className={classes.main}>
         <div className={classes.box}>
           <label>Player 1</label>
-          <img src={require(`../Images/${players.player1}.png`)} alt="paper" />
+          <img
+            src={require(`../Images/${players.player1}.png`)}
+            alt={`${players.player1}`}
+          />
 
-          <p>Player 1 selected </p>
+          <p>{players.player1.toUpperCase()}</p>
         </div>
         <div className={classes.box}>
           <label>Player 2</label>
           <img
             src={require(`../Images/${players.player2}.png`)}
-            alt="scissor"
+            alt={`${players.player2}`}
           />
-
-          <p>Player 2 selected </p>
+          <p>{players.player2.toUpperCase()} </p>
         </div>
       </div>
+
+      <div className={classes.main}>
+        {draw && <p1>Both players have selected the same</p1>}
+        {!draw && isFirstPlayerWin && <p1>Winner is Player 1</p1>}
+        {!draw && !isFirstPlayerWin && <p1>Winner is Player 2</p1>}
+      </div>
+
       <Button onClick={startBtnHandler}></Button>
     </Fragment>
   );
