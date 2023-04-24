@@ -9,9 +9,9 @@ const Button = (props) => {
   return (
     <Fragment>
       <div className={classes.main}>
-        <button className={classes.button} onClick={() => {}}>
+        {/* <button className={classes.button} onClick={() => {}}>
           Reset
-        </button>
+        </button> */}
         <button className={classes.button} onClick={props.onClick}>
           Start
         </button>
