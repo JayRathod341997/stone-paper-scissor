@@ -12,7 +12,6 @@ const Main = () => {
     const p1 = images[Math.floor(Math.random() * 3)];
     const p2 = images[Math.floor(Math.random() * 3)];
     // console.log(p1, p2);
-   
 
     if (p1 === "paper") {
       if (p2 === "scissor") {
@@ -30,7 +29,8 @@ const Main = () => {
       } else {
         winner = "draw";
       }
-    } else { //scissor
+    } else {
+      //scissor
       if (p2 === "stone") {
         winner = "p2";
       } else if (p2 === "paper") {
@@ -48,21 +48,28 @@ const Main = () => {
     <Fragment>
       <div className={classes.main}>
         <div className={classes.box}>
+          <label>Player 1</label>
           <img src={require(`../Images/${players.player1}.png`)} alt="paper" />
+
+          <p>Player 1 selected </p>
+        </div>
+        <div className={classes.box}>
+          <label>Player 2</label>
           <img
             src={require(`../Images/${players.player2}.png`)}
             alt="scissor"
           />
+
+          <p>Player 2 selected </p>
         </div>
-        <div>
-          <button className={classes.button} onClick={() => {}}>
-            Reset
-          </button>
-          <button className={classes.button} onClick={startBtnHandler}>
-            Start
-          </button>
-        </div>
-        {/* <div>winner is {winner}</div> */}
+      </div>
+      <div className={classes.footer}>
+        <button className={classes.button} onClick={() => {}}>
+          Reset
+        </button>
+        <button className={classes.button} onClick={startBtnHandler}>
+          Start
+        </button>
       </div>
     </Fragment>
   );
